@@ -1,0 +1,8 @@
+<routes>
+
+  <get path="/" to="Todo#index" />
+  <get path="/action/todo" to="Todo#index" />
+  <get path="/action/todo/new" to="Todo#new" />
+  <post path="/action/todo/new" to="Todo#create" />
+
+</routes>

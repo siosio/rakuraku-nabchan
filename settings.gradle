@@ -1,0 +1,6 @@
+rootProject.name = 'rakuraku-nabchan'
+include 'rakuraku-nabchan-web'
+include 'rakuraku-nabchan-web-example'
+
+enableFeaturePreview('IMPROVED_POM_SUPPORT')
+
