@@ -1,5 +1,7 @@
 package siosio.configuration
 
+import nablarch.common.web.session.*
+import nablarch.common.web.session.store.*
 import nablarch.core.log.*
 import nablarch.fw.*
 import nablarch.fw.handler.*
@@ -19,9 +21,14 @@ class DefaultHandlerQueueFactory : HandlerQueueFactory {
 
         return listOf(
                 GlobalErrorHandler(),
-                AccessLogHandler(),
                 HttpCharacterEncodingHandler(),
                 HttpResponseHandler(),
+                SessionStoreHandler().apply { 
+                    setSessionManager(SessionManager().apply { 
+                        setDefaultStoreName("hidden")
+                        availableStores = listOf(HiddenStore())
+                    })
+                },
                 HttpErrorHandler(),
                 RoutesMapping().apply {
                     basePackage = getRequiredKey("routes.base-package")
@@ -29,20 +36,5 @@ class DefaultHandlerQueueFactory : HandlerQueueFactory {
                     initialize()
                 }
         )
-    }
-
-    class AccessLogHandler() : Handler<HttpRequest, HttpResponse> {
-        companion object {
-            private val LOG = LoggerManager.get(AccessLogHandler::class.java)
-        }
-
-        override fun handle(data: HttpRequest, context: ExecutionContext): HttpResponse {
-            val startTime = System.nanoTime()
-            val response: HttpResponse = context.handleNext(data)
-            LOG.logInfo("path:${data.requestUri}" +
-                        "\tstatus_code:${response.statusCode}" +
-                        "\texecution_time:${TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)}")
-            return response
-        }
     }
 }
