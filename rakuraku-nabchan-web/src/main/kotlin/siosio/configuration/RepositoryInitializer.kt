@@ -1,6 +1,7 @@
 package siosio.configuration
 
 import nablarch.common.web.interceptor.*
+import nablarch.common.web.validator.*
 import nablarch.core.date.*
 import nablarch.core.repository.*
 import nablarch.fw.web.interceptor.*
@@ -36,7 +37,8 @@ class DefaultRepositoryInitializer : RepositoryInitializer {
                             InjectForm::class.qualifiedName,
                             Transactional::class.qualifiedName
                     ),
-                    "systemTimeProvider" to BasicSystemTimeProvider()
+                    "systemTimeProvider" to BasicSystemTimeProvider(),
+                    "validationStrategy" to BeanValidationStrategy()
             )
         }
         DatabaseConfiguration().configure()
