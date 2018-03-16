@@ -7,6 +7,7 @@ import nablarch.fw.*
 import nablarch.fw.handler.*
 import nablarch.fw.web.*
 import nablarch.fw.web.handler.*
+import nablarch.fw.web.upload.*
 import nablarch.integration.router.*
 import java.util.concurrent.*
 import javax.servlet.*
@@ -23,6 +24,11 @@ class DefaultHandlerQueueFactory : HandlerQueueFactory {
                 GlobalErrorHandler(),
                 HttpCharacterEncodingHandler(),
                 HttpResponseHandler(),
+                MultipartHandler().apply { 
+                    setUploadSettings(UploadSettings().apply { 
+                        isAutoCleaning = true
+                    })
+                },
                 SessionStoreHandler().apply { 
                     setSessionManager(SessionManager().apply { 
                         setDefaultStoreName("hidden")
