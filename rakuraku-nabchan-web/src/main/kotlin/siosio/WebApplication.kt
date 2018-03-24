@@ -50,7 +50,7 @@ object WebApplication {
         listOf(FailedRequestFilter::class, HttpHeaderSecurityFilter::class).map {
             val filterDef = FilterDef()
             filterDef.filterName = it.simpleName
-            filterDef.filter = it.java.newInstance()
+            filterDef.filter = it.createInstance()
             filterDef
         }.map {
             val filterMap = FilterMap()
