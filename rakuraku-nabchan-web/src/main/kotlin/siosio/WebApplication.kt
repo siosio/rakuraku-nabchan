@@ -48,15 +48,15 @@ object WebApplication {
 
     private fun addTomtomFilter(webapp: Context) {
         listOf(FailedRequestFilter::class, HttpHeaderSecurityFilter::class).map {
-            val filterDef = FilterDef()
-            filterDef.filterName = it.simpleName
-            filterDef.filter = it.createInstance()
-            filterDef
+            FilterDef().apply {
+                filterName = it.simpleName
+                filter = it.createInstance()
+            }
         }.map {
-            val filterMap = FilterMap()
-            filterMap.filterName = it.filterName
-            filterMap.addURLPattern("/*")
-            Pair(it, filterMap)
+            it to FilterMap().apply {
+                    filterName = it.filterName
+                    addURLPattern("/*")
+                  }
         }.forEach {
             webapp.addFilterDef(it.first)
             webapp.addFilterMap(it.second)
