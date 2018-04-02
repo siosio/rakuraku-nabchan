@@ -30,7 +30,7 @@ class DatabaseConfiguration {
         return dataSource
     }
 
-    private fun getDialect(): Map<String, out Any> {
+    private fun getDialect(): Map<String, Any> {
         val databaseName: String = SystemRepository.getString("database.name")?.toUpperCase() ?: ""
 
         return try {

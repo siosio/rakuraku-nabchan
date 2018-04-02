@@ -1,9 +1,11 @@
 package example.todo;
 
+import java.io.Serializable;
+
 import org.seasar.doma.Entity;
 
 @Entity(immutable = true)
-public class Todo {
+public class Todo implements Serializable {
 
     private final Long id;
 

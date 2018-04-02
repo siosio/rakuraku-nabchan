@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>TODOリスト</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+</head>
+<body>
+<h1>TODO一覧</h1>
+<div>
+  <a href="" th:href="@{/action/todo/new}">登録</a>
+</div>
+<ul>
+  <!--/*@thymesVar id="todos" type="java.util.List<example.todo.Todo>"*/-->
+  <li th:each="todo : ${todos}" th:text="${todo.title}"></li>
+</ul>
+</body>
+</html>

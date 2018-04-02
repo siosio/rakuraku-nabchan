@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>TODO追加</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+</head>
+<body>
+<h1>TODO追加</h1>
+
+<form method="post" th:action="@{/action/todo/new}">
+  <input type="text" name="form.title" />
+  <button type="submit">登録</button>
+</form>
+</body>
+</html>
