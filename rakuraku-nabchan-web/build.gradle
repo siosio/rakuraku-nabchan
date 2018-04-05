@@ -6,6 +6,7 @@ buildscript {
   }
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.3.0"
   }
 }
 
@@ -15,6 +16,7 @@ version '0.0.1'
 apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'maven'
+apply plugin: "com.vanniktech.dependency.graph.generator"
 
 repositories {
   mavenCentral()
