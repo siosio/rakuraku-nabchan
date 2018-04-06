@@ -55,6 +55,6 @@ internal class DatabaseConfigurationTest {
         
         assertThatThrownBy { sut.configure() }
                 .isInstanceOf(IllegalConfigurationException::class.java)
-                .hasMessageContaining("データベース名が不正です。")
+                .hasMessageContaining("データベース名(key:database.name)が不正です。")
     }
 }
