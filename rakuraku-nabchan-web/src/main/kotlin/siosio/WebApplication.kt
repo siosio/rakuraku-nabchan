@@ -47,7 +47,7 @@ object WebApplication {
     }
 
     private fun addTomtomFilter(webapp: Context) {
-        listOf(FailedRequestFilter::class, HttpHeaderSecurityFilter::class).map {
+        listOf(HttpHeaderSecurityFilter::class).map {
             FilterDef().apply {
                 filterName = it.simpleName
                 filter = it.createInstance()
