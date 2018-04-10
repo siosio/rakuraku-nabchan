@@ -50,4 +50,8 @@ task fatCapsule(type: FatCapsule) {
   applicationClass 'siosio.WebApplication'
 }
 
+// doma settings
+processResources.destinationDir = compileJava.destinationDir
+compileJava.dependsOn processResources
+
 idea.module.outputDir = compileJava.destinationDir
